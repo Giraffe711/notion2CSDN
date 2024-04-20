@@ -1,0 +1,90 @@
+id: csdn
+
+info:
+  name: upload Photo  To csdn
+  author: Someb0dy
+  severity: critical
+  description: upload Photos  To csdn
+  reference:
+    - https://github.com/someb0dy
+  metadata:
+    max-request: 2
+  tags: csdn
+
+code:
+ -  engine:
+      - python3.9
+      - py
+      - python3
+    source: |
+      import base64
+      import os
+      with open(os.environ.get("photo"), "rb") as f:
+            data = f.read()
+      f.close()
+      data = base64.b64encode(data)
+      print(data.decode("utf-8"))
+
+http:
+  - raw:
+      - |
+        POST / HTTP/1.1
+        HOST: {{Hostname}}
+        Sec-Ch-Ua: "Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"
+        Accept: application/json, text/javascript, */*; q=0.01
+        Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryAypgl6336RNmBZ8D
+        Sec-Ch-Ua-Mobile: ?0
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
+        Sec-Ch-Ua-Platform: "Windows"
+        Origin: https://editor.csdn.net
+        Sec-Fetch-Site: cross-site
+        Sec-Fetch-Mode: cors
+        Sec-Fetch-Dest: empty
+        Referer: https://editor.csdn.net/
+        Accept-Encoding: gzip, deflate
+        Accept-Language: zh-CN,zh;q=0.9,en;q=0.8
+        Priority: u=1, i
+        Connection: close
+
+        ------WebKitFormBoundaryAypgl6336RNmBZ8D
+        Content-Disposition: form-data; name="key"
+
+        direct/4f911209f92d4cab894f474599862f62.png
+        ------WebKitFormBoundaryAypgl6336RNmBZ8D
+        Content-Disposition: form-data; name="policy"
+
+        eyJl......(here  you need to change it with your upload photo http request)
+        ------WebKitFormBoundaryAypgl6336RNmBZ8D
+        Content-Disposition: form-data; name="OSSAccessKeyId"
+
+        L......(here  you need to change it with your upload photo http request)
+        ------WebKitFormBoundaryAypgl6336RNmBZ8D
+        Content-Disposition: form-data; name="success_action_status"
+
+        200
+        ------WebKitFormBoundaryAypgl6336RNmBZ8D
+        Content-Disposition: form-data; name="signature"
+
+        +/P......(here  you need to change it with your upload photo http request)
+        ------WebKitFormBoundaryAypgl6336RNmBZ8D
+        Content-Disposition: form-data; name="callback"
+
+        eyJjYWx......(here  you need to change it with your upload photo http request)
+        ------WebKitFormBoundaryAypgl6336RNmBZ8D
+        Content-Disposition: form-data; name="file"; filename="Untitled 0.png"
+        Content-Type: image/png
+
+        {{base64_decode(code_response)}}
+        ------WebKitFormBoundaryAypgl6336RNmBZ8D--
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "imageUrl"
+    extractors:
+      - type: regex
+        part: body
+        regex:
+          - "\"imageUrl\":\"((.*?))\""
+
+# digest: 4a0a0047304502200a421f68db06c5e48cf053c26220444074867dc6c2942824495546a80578d22b022100f6d6d3e249a691f7a26b16490f65ba854f51664151f585fa456d3f9482baf6aa:cc5eba844f734383650c5b1a2d587ba0
