@@ -221,3 +221,9 @@ nuclei  -code -t upload.yaml -u csdn-img-blog.oss-cn-beijing.aliyuncs.com    -v 
 
 http 上传文件的请求不是一直生效的，是持续一段时间可以上传，如果失效了，重新抓一个包，重新给upload.yaml 签名
 签名失败的话，把upload下面哪一行digest 删除重新签名试试
+
+
+
+# imglink.py
+
+这个用来放到一个html里面做展示效果
