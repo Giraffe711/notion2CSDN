@@ -30,6 +30,8 @@ http:
       - |
         POST / HTTP/1.1
         HOST: {{Hostname}}
+        // 替换的时候从这里开始替换,把这行注释也一起替换掉
+
         Sec-Ch-Ua: "Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"
         Accept: application/json, text/javascript, */*; q=0.01
         Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryAypgl6336RNmBZ8D
@@ -49,7 +51,7 @@ http:
         ------WebKitFormBoundaryAypgl6336RNmBZ8D
         Content-Disposition: form-data; name="key"
 
-        direct/4f911209f92d4cab894f474599862f62.png
+        direct/4f911*******99862f62.png(here  you need to change it with your upload photo http request)
         ------WebKitFormBoundaryAypgl6336RNmBZ8D
         Content-Disposition: form-data; name="policy"
 

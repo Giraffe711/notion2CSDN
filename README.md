@@ -60,15 +60,15 @@ http:
         ------WebKitFormBoundaryAypgl6336RNmBZ8D
         Content-Disposition: form-data; name="key"
 
-        direct/4f911209f92d4cab894f474599862f62.png
+        direct/4f911209f9***************4599862f62.png(here  you need to change it to your upload photo http request)
         ------WebKitFormBoundaryAypgl6336RNmBZ8D
         Content-Disposition: form-data; name="policy"
 
-        eyJl......(here  you need to change it with your upload photo http request)
+        eyJl......(here  you need to change it to your upload photo http request)
         ------WebKitFormBoundaryAypgl6336RNmBZ8D
         Content-Disposition: form-data; name="OSSAccessKeyId"
 
-        L......(here  you need to change it with your upload photo http request)
+        L......(here  you need to change it to your upload photo http request)
         ------WebKitFormBoundaryAypgl6336RNmBZ8D
         Content-Disposition: form-data; name="success_action_status"
 
@@ -76,11 +76,11 @@ http:
         ------WebKitFormBoundaryAypgl6336RNmBZ8D
         Content-Disposition: form-data; name="signature"
 
-        +/P......(here  you need to change it with your upload photo http request)
+        +/P......(here  you need to change it to your upload photo http request)
         ------WebKitFormBoundaryAypgl6336RNmBZ8D
         Content-Disposition: form-data; name="callback"
 
-        eyJjYWx......(here  you need to change it with your upload photo http request)
+        eyJjYWx......(here  you need to change it to your upload photo http request)
         ------WebKitFormBoundaryAypgl6336RNmBZ8D
         Content-Disposition: form-data; name="file"; filename="Untitled 0.png"
         Content-Type: image/png
@@ -220,3 +220,4 @@ nuclei  -code -t upload.yaml -u csdn-img-blog.oss-cn-beijing.aliyuncs.com    -v 
 ## notice
 
 http 上传文件的请求不是一直生效的，是持续一段时间可以上传，如果失效了，重新抓一个包，重新给upload.yaml 签名
+签名失败的话，把upload下面哪一行digest 删除重新签名试试
