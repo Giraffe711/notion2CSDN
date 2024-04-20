@@ -41,6 +41,7 @@ def uploadPhoto(photopath):
          os.system(cmd)
     
 
+
 def replaceMarkdown(l,MarkdownFile):
     regex = r'!\[.*?\]\(.*?\)'
     try:
@@ -50,8 +51,12 @@ def replaceMarkdown(l,MarkdownFile):
         # print(file_content)
         matches = re.findall(regex,file_content)
         if matches:
-            print(len(matches))
-            print(len(l))
+            # print(len(matches))
+            with open ("imglink.txt","w") as ff:
+                for i in l:
+                    ff.write(i+"\n")
+            ff.close()
+            # print(len(l))
             for i in range(len(matches)):
                 img = f'![img]({l[i]})'
                 # print(f"matches[i]={matches[i]}")
