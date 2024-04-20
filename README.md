@@ -188,11 +188,11 @@ if __name__ == "__main__":
 - capture a upload photo http request
 - 你需要安装nuclei  Referer: https://github.com/projectdiscovery/nuclei
 
-![image-20240420173008871](./Notion2Csdn.assets/image-20240420173008871.png)
+![img](https://img-blog.csdnimg.cn/direct/73b0ae1d44124b6eb34af7a44655f08d.png)
 
 
 
-![image-20240420173052248](./Notion2Csdn.assets/image-20240420173052248.png)
+![image-20240420173052248](https://img-blog.csdnimg.cn/direct/c7e21ce7e0cf47898f012205efab79bf.png)
 
 ```http
 {"code":200,"data":{"hostname":"https://img-blog.csdnimg.cn/","imageUrl":"https://img-blog.csdnimg.cn/direct/95722********897******.webp","width":"300","targetObjectKey":"direct/95722ee7*********.webp","x-image-suffix":"webp","height":"300"},"msg":"success"}
