@@ -26,10 +26,16 @@ def findPhotoLink():
     except FileNotFoundError:
         print("File not found. Please check the path:", target_path)
     return matches
+# 自定义排序键函数
+def natural_sort_key(s):
+    return [int(text) if text.isdigit() else text.lower() for text in re.split(r'(\d+)', s)]
 
 def uploadPhoto(photopath):
     #photopath = "Mist"
-    for filename in os.listdir(photopath):
+    l = os.listdir(photopath)
+    l.sort(key=natural_sort_key)
+    for filename in l:
+        # print(filename)
          os.environ['photo']=f"{photopath}/{filename}"
          cmd = f"nuclei  -code -t upload.yaml -u csdn-img-blog.oss-cn-beijing.aliyuncs.com  -v -sresp"
          os.system(cmd)
@@ -44,8 +50,8 @@ def replaceMarkdown(l,MarkdownFile):
         # print(file_content)
         matches = re.findall(regex,file_content)
         if matches:
-            # print(matches)
-            # print(matches,l)
+            print(len(matches))
+            print(len(l))
             for i in range(len(matches)):
                 img = f'![img]({l[i]})'
                 # print(f"matches[i]={matches[i]}")
@@ -62,8 +68,8 @@ def replaceMarkdown(l,MarkdownFile):
 
 if __name__ == "__main__":
     try:
-        photoPath = "Mist"
-        uploadPhoto(photoPath)
+        #photoPath = "Mist"
+        #uploadPhoto(photoPath)
         l = findPhotoLink()
         markDownFile = "Mist2.md"
         replaceMarkdown(l,markDownFile)
