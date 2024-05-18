@@ -73,11 +73,11 @@ def replaceMarkdown(l,MarkdownFile):
 
 if __name__ == "__main__":
     try:
-        #photoPath = "Mist"
-        #uploadPhoto(photoPath)
+        photoPath = "../SolarLab"
+        uploadPhoto(photoPath)
         l = findPhotoLink()
-        markDownFile = "Mist2.md"
+        markDownFile = "../SolarLab.md"
         replaceMarkdown(l,markDownFile)
-    except Exception e:
+    except Exception as e:
         print(str(e))
     
