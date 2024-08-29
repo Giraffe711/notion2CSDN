@@ -142,6 +142,7 @@ def uploadPhoto(photopath):
     for filename in os.listdir(photopath):
          os.environ['photo']=f"{photopath}/{filename}"
          cmd = f"nuclei  -code -t upload.yaml -u csdn-img-blog.oss-cn-beijing.aliyuncs.com  -v -sresp"
+         cmd = cmd.replace("csdn-img-blog.oss-cn-beijing.aliyuncs.com","csdn-img-blog.obs.cn-north-4.myhuaweicloud.com")
          os.system(cmd)
     
 
@@ -227,3 +228,7 @@ http 上传文件的请求不是一直生效的，是持续一段时间可以上
 # imglink.py
 
 这个用来放到一个html里面做展示效果
+
+
+# 运行脚本前 记得修改图片名
+把 第一个图片都 名字修改 从 img.png 修改为 img 0.png

@@ -1,5 +1,8 @@
 import os
 import re
+oss_target = "csdn-img-blog.obs.cn-north-4.myhuaweicloud.com"
+ossResultFile = oss_target.replace("-","_").replace(".","_") + "_csdn"
+print(ossResultFile)
 
 def findPhotoLink():
      # 定义正则表达式，用于匹配imageUrl的值
@@ -7,7 +10,8 @@ def findPhotoLink():
 
     # 计算目标文件的绝对路径（假设你的脚本位于某个路径下）
     script_dir = os.path.dirname(__file__)  # 获取当前脚本的路径
-    target_path = os.path.join(script_dir, ".\output\http\csdn_img_blog_oss_cn_beijing_aliyuncs_com_csdn.txt")  # 请替换your_target_file.json为实际的文件名
+    
+    target_path = os.path.join(script_dir, f"output{os.sep}http{os.sep}{ossResultFile}.txt")  # 请替换your_target_file.json为实际的文件名
 
 
     try:
@@ -38,6 +42,7 @@ def uploadPhoto(photopath):
         # print(filename)
          os.environ['photo']=f"{photopath}/{filename}"
          cmd = f"nuclei  -code -t upload.yaml -u csdn-img-blog.oss-cn-beijing.aliyuncs.com  -v -sresp"
+         cmd = cmd.replace("csdn-img-blog.oss-cn-beijing.aliyuncs.com",f"{oss_target}")
          os.system(cmd)
     
 
@@ -73,10 +78,10 @@ def replaceMarkdown(l,MarkdownFile):
 
 if __name__ == "__main__":
     try:
-        photoPath = "../SolarLab"
-        uploadPhoto(photoPath)
+        photoPath = "../wp/MonitorsThree 6451ca5678634577a0cab77daf1d55fc"
+        # uploadPhoto(photoPath)
         l = findPhotoLink()
-        markDownFile = "../SolarLab.md"
+        markDownFile = "../wp/MonitorsThree 6451ca5678634577a0cab77daf1d55fc.md"
         replaceMarkdown(l,markDownFile)
     except Exception as e:
         print(str(e))
